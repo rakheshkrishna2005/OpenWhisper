@@ -1,11 +1,24 @@
 import streamlit as st
 import whisper
+import torch
+import os
 
 # Set wide layout
 st.set_page_config(page_title="Speech-to-Text", layout="wide")
 
-# Load Whisper model
-whisper_model = whisper.load_model("base")
+# Custom model download location
+custom_model_path = "D:\\whisper_models"
+
+# Device selection
+device_type = "cuda" if torch.cuda.is_available() else "cpu"
+
+# Load Whisper model with all parameters
+whisper_model = whisper.load_model(
+    name="small",
+    device=device_type,
+    download_root=custom_model_path,
+    in_memory=False
+)
 
 # Transcribe audio function
 def transcribe_audio(audio_bytes):
@@ -15,7 +28,7 @@ def transcribe_audio(audio_bytes):
     result = whisper_model.transcribe(temp_path)
     return result["text"]
 
-# Page title (centered)
+# Centered title and description
 st.markdown("<h1 style='text-align: center;'>🎙️ Speech-to-Text with Whisper</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center;'>Upload or record an audio file and get the transcription.</p>", unsafe_allow_html=True)
 
