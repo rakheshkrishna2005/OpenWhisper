@@ -51,7 +51,7 @@ pip install -r requirements.txt
 1. **Run the Streamlit app:**
 
 ```bash
-streamlit run app.py
+streamlit run STT.py
 ```
 
 2. **Open your browser:**
@@ -63,7 +63,7 @@ Visit `http://localhost:8501`
 
 ```
 OpenWhisper/
-├── app.py               # Main Streamlit application
+├── STT.py               # Main Streamlit application
 ├── requirements.txt     # Python dependencies
 ├── app.png              # Screenshot
 └── README.md            # Project overview and setup
